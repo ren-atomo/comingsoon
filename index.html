@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .coming-soon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 48px;
+      color: blue; /* 波の色と同じに変更 */
+      text-align: center;
+      font-family: 'Arial', sans-serif; /* フォントを変更する */
+    }
+
+    .back-button {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      background-color: blue;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+  <title>Wave Animation</title>
+</head>
+<body>
+  <canvas id="waveCanvas"></canvas>
+  <div class="coming-soon">Coming Soon</div>
+  <button class="back-button" onclick="window.location.href='https://ren-atomo.github.io/create'">戻る</button>
+  <script>
+    const canvas = document.getElementById('waveCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const waves = [];
+
+    class Wave {
+      constructor(amplitude, frequency, phase) {
+        this.amplitude = amplitude;
+        this.frequency = frequency;
+        this.phase = phase;
+      }
+
+      draw() {
+        ctx.beginPath();
+        for (let x = 0; x < canvas.width; x += 10) {
+          const y = this.amplitude * Math.sin(this.frequency * x + this.phase);
+          ctx.lineTo(x, canvas.height / 2 + y);
+        }
+        ctx.strokeStyle = 'blue';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+
+      update() {
+        this.phase += 0.02; // Adjust the speed of the animation
+      }
+    }
+
+    // Create waves
+    for (let i = 0; i < 3; i++) {
+      const wave = new Wave(50, 0.02 * (i + 1), Math.PI * 2 * Math.random());
+      waves.push(wave);
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      waves.forEach(wave => {
+        wave.draw();
+        wave.update();
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .coming-soon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 48px;
+      color: blue; /* 波の色と同じに変更 */
+      text-align: center;
+      font-family: 'Courier New', sans-serif; /* フォントを変更する */
+    }
+
+    .back-button {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      background-color: blue;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+  <title>Wave Animation</title>
+</head>
+<body>
+  <canvas id="waveCanvas"></canvas>
+  <div class="coming-soon">Coming Soon</div>
+  <button class="back-button" onclick="window.location.href='https://ren-atomo.github.io/create'">戻る</button>
+  <script>
+    const canvas = document.getElementById('waveCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const waves = [];
+
+    class Wave {
+      constructor(amplitude, frequency, phase) {
+        this.amplitude = amplitude;
+        this.frequency = frequency;
+        this.phase = phase;
+      }
+
+      draw() {
+        ctx.beginPath();
+        for (let x = 0; x < canvas.width; x += 10) {
+          const y = this.amplitude * Math.sin(this.frequency * x + this.phase);
+          ctx.lineTo(x, canvas.height / 2 + y);
+        }
+        ctx.strokeStyle = 'blue';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+
+      update() {
+        this.phase += 0.02; // Adjust the speed of the animation
+      }
+    }
+
+    // Create waves
+    for (let i = 0; i < 3; i++) {
+      const wave = new Wave(50, 0.02 * (i + 1), Math.PI * 2 * Math.random());
+      waves.push(wave);
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      waves.forEach(wave => {
+        wave.draw();
+        wave.update();
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
